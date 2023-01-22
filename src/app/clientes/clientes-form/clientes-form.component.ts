@@ -8,16 +8,17 @@ import { Cliente } from '../cliente';
 })
 export class ClientesFormComponent implements OnInit {
 
-  cliente: Cliente = {
-    id: '',
-    nome: '',
-    cpf: '',
-    dataCadastro: ''
+  cliente: Cliente;
+
+  constructor() { 
+    this.cliente = new Cliente();
   }
 
-  constructor() { }
-
   ngOnInit(): void {
+  }
+
+  clicar() {
+    console.log(this.cliente);
   }
 
 }
