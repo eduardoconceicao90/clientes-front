@@ -20,7 +20,7 @@ export class ClientesFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.salvar(this.cliente).subscribe(() => {
+    this.service.create(this.cliente).subscribe(() => {
       this.toast.success('Cliente cadastrado com sucesso!', 'Cadastro');
     }, errorResponse => {
       this.toast.error(errorResponse.error.errors)
