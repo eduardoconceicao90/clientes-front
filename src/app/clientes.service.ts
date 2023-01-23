@@ -18,15 +18,4 @@ export class ClientesService {
     return this.http.post<Cliente>('http://localhost:8080/clientes', cliente);
   }
 
-  getClientes(): Cliente[]{
-    let cliente = new Cliente();
-
-    cliente.id = 1;
-    cliente.nome = 'Eduardo Conceição';
-    cliente.cpf = '000000000000';
-    cliente.dataCadastro = '23/01/2023';
-
-    return [cliente]
-  }
-
 }
