@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ClientesService } from 'src/app/clientes.service';
 import { Cliente } from '../cliente';
@@ -12,7 +13,11 @@ export class ClientesFormComponent implements OnInit {
 
   cliente: Cliente;
 
-  constructor(private service: ClientesService, private toast: ToastrService) { 
+  constructor(
+        private service: ClientesService, 
+        private toast: ToastrService, 
+        private router: Router
+        ) { 
     this.cliente = new Cliente();
   }
 
@@ -22,9 +27,13 @@ export class ClientesFormComponent implements OnInit {
   onSubmit() {
     this.service.create(this.cliente).subscribe(() => {
       this.toast.success('Cliente cadastrado com sucesso!', 'Cadastro');
+      this.router.navigate(['clientes-list'])
     }, errorResponse => {
       this.toast.error(errorResponse.error.errors)
     });
   }
 
+  voltarParaListagem() {
+    this.router.navigate(['clientes-list'])
+  }
 }

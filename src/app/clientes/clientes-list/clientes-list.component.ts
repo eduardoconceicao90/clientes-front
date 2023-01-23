@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ClientesService } from 'src/app/clientes.service';
 import { Cliente } from '../cliente';
 
@@ -11,7 +12,10 @@ export class ClientesListComponent implements OnInit {
 
   clientes: Cliente[] = [];
 
-  constructor(private service: ClientesService) { }
+  constructor(
+        private service: ClientesService,
+        private router: Router      
+        ) { }
 
   ngOnInit(): void {
     this.findAll();
@@ -21,6 +25,10 @@ export class ClientesListComponent implements OnInit {
     this.service.findAll().subscribe(resposta => {
       this.clientes = resposta;
     });
+  }
+
+  novoCadastro(){
+    this.router.navigate(['clientes-form'])
   }
 
 }
