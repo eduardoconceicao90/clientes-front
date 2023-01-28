@@ -11,16 +11,14 @@ import { Cliente } from '../cliente';
 })
 export class ClientesFormComponent implements OnInit {
 
-  cliente: Cliente;
+  cliente = new Cliente();
 
   constructor(
         private service: ClientesService,
         private toast: ToastrService,
         private router: Router,
         private activatedRoute: ActivatedRoute
-        ) {
-    this.cliente = new Cliente();
-  }
+        ) { }
 
   ngOnInit(): void {
     this.cliente.id = this.activatedRoute.snapshot.paramMap.get('id');

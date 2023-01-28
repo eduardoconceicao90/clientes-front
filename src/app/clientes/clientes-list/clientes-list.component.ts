@@ -11,10 +11,11 @@ import { Cliente } from '../cliente';
 export class ClientesListComponent implements OnInit {
 
   clientes: Cliente[] = [];
+  clienteSelecionado = new Cliente();
 
   constructor(
         private service: ClientesService,
-        private router: Router      
+        private router: Router
         ) { }
 
   ngOnInit(): void {
@@ -29,6 +30,10 @@ export class ClientesListComponent implements OnInit {
 
   novoCadastro(){
     this.router.navigate(['clientes-form'])
+  }
+
+  preparaDelecao(cliente: Cliente){
+    this.clienteSelecionado = cliente;
   }
 
 }

@@ -35,9 +35,32 @@
                                 routerLink="/clientes-form/{{ cliente.id }}">
                             <i class="fa fa-edit"></i>
                         </button>
+                        <button class="btn btn-danger ml-1" (click)="preparaDelecao(cliente)"
+                                data-toggle="modal" data-target="#modalDelecao">
+                           <i class="fa fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <div id="modalDelecao" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4>Confirmação</h4>
+          </div>
+
+          <div class="modal-body" *ngIf="clienteSelecionado">
+            Confirma a deleção do(a) cliente {{ clienteSelecionado.nome }}?
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-success">Confirmar</button>
+            <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
