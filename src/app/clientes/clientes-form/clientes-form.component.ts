@@ -34,13 +34,23 @@ export class ClientesFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.create(this.cliente).subscribe(() => {
-      this.toast.success('Cliente cadastrado com sucesso!', 'Cadastro');
-      this.router.navigate(['clientes-list'])
-    }, errorResponse => {
-      this.toast.error(errorResponse.error.errors)
-    });
+    if(this.cliente.id) {
+      this.service.update(this.cliente).subscribe(() => {
+        this.toast.success('Cliente atualizado com sucesso!', 'Atualização');
+        this.router.navigate(['clientes-list'])
+      }, errorResponse => {
+        this.toast.error(errorResponse.error.errors)
+      });
+    } else{
+      this.service.create(this.cliente).subscribe(() => {
+        this.toast.success('Cliente cadastrado com sucesso!', 'Cadastro');
+        this.router.navigate(['clientes-list'])
+      }, errorResponse => {
+        this.toast.error(errorResponse.error.errors)
+      });
+    }
   }
+
 
   voltarParaListagem() {
     this.router.navigate(['clientes-list'])

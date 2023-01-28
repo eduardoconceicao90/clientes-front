@@ -22,4 +22,8 @@ export class ClientesService {
     return this.http.post<Cliente>('http://localhost:8080/clientes', cliente);
   }
 
+  update(cliente: Cliente): Observable<Cliente>{
+    return this.http.put<Cliente>(`http://localhost:8080/clientes/${cliente.id}`, cliente);
+  }
+
 }
