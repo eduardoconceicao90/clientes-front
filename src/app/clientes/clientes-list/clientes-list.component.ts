@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ClientesService } from 'src/app/clientes.service';
 import { Cliente } from '../cliente';
 
@@ -15,7 +16,8 @@ export class ClientesListComponent implements OnInit {
 
   constructor(
         private service: ClientesService,
-        private router: Router
+        private router: Router,
+        private toast: ToastrService
         ) { }
 
   ngOnInit(): void {
@@ -36,4 +38,12 @@ export class ClientesListComponent implements OnInit {
     this.clienteSelecionado = cliente;
   }
 
+  deletar(){
+    this.service.delete(this.clienteSelecionado.id).subscribe(() => {
+      this.toast.success('Cliente deletado com sucesso!', 'Deleção');
+      this.ngOnInit();
+    }, errorResponse => {
+      this.toast.error(errorResponse.error.errors)
+    });
+  }
 }
