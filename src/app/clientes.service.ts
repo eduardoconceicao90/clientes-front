@@ -14,6 +14,10 @@ export class ClientesService {
     return this.http.get<Cliente[]>('http://localhost:8080/clientes');
   }
 
+  findById(id: any): Observable<Cliente>{
+    return this.http.get<Cliente>(`http://localhost:8080/clientes/${id}`);
+  }
+
   create(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>('http://localhost:8080/clientes', cliente);
   }

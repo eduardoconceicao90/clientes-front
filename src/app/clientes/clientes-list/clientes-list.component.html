@@ -5,14 +5,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2">
-            <button class="btn btn-warning" (click)="novoCadastro()"> 
+            <button class="btn btn-warning" (click)="novoCadastro()">
                 <i class="fa fa-plus"></i> Novo
             </button>
         </div>
     </div>
 
     <br>
-    
+
     <div class="row">
         <table class="table table-condensed table-hover">
             <thead>
@@ -30,7 +30,11 @@
                     <td>{{ cliente.nome }}</td>
                     <td>{{ cliente.cpf }}</td>
                     <td>{{ cliente.dataCadastro }}</td>
-                    <td></td>
+                    <td>
+                        <button class="btn btn-primary">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>

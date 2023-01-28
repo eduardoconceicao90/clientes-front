@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ClientesService } from 'src/app/clientes.service';
 import { Cliente } from '../cliente';
@@ -14,14 +14,23 @@ export class ClientesFormComponent implements OnInit {
   cliente: Cliente;
 
   constructor(
-        private service: ClientesService, 
-        private toast: ToastrService, 
-        private router: Router
-        ) { 
+        private service: ClientesService,
+        private toast: ToastrService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute
+        ) {
     this.cliente = new Cliente();
   }
 
   ngOnInit(): void {
+    this.cliente.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.findById();
+  }
+
+  findById(): void {
+    this.service.findById(this.cliente.id).subscribe(resposta => {
+      this.cliente = resposta;
+    });
   }
 
   onSubmit() {
