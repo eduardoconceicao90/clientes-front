@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { ClientesModule } from './clientes/clientes.module';
 import { ClientesService } from './clientes.service';
 import { ToastrModule } from 'ngx-toastr';
+import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     TemplateModule,
     ClientesModule,
+    ServicoPrestadoModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,
