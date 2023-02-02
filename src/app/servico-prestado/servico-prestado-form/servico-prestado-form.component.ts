@@ -1,5 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ClientesService } from 'src/app/clientes.service';
 import { Cliente } from 'src/app/clientes/cliente';
 import { ServicoPrestadoService } from 'src/app/servico-prestado.service';
@@ -17,7 +19,9 @@ export class ServicoPrestadoFormComponent implements OnInit {
 
   constructor(
         private clienteService: ClientesService,
-        private service: ServicoPrestadoService
+        private service: ServicoPrestadoService,
+        private toast: ToastrService,
+        private router: Router,
         ) { }
 
   ngOnInit(): void {
@@ -32,7 +36,10 @@ export class ServicoPrestadoFormComponent implements OnInit {
 
   onSubmit() {
     this.service.create(this.servico).subscribe(resposta => {
-      console.log(resposta)
+      this.toast.success('Serviço cadastrado com sucesso!', 'Cadastro Serviço');
+      this.router.navigate(['servico-prestado-list'])
+    }, errorResponse => {
+      this.toast.error(errorResponse.error.errors)
     });
   }
 

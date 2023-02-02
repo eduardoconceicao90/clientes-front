@@ -22,7 +22,9 @@ export class ClientesFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.cliente.id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.findById();
+    if(this.cliente.id != null){
+      this.findById();
+    }
   }
 
   findById(): void {
