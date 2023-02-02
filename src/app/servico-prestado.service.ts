@@ -13,7 +13,7 @@ export class ServicoPrestadoService {
 
   constructor(private http: HttpClient) { }
 
-  salvar(servicoPrestado: ServicoPrestado): Observable<ServicoPrestado> {
+  create(servicoPrestado: ServicoPrestado): Observable<ServicoPrestado> {
     return this.http.post<ServicoPrestado>(`${this.apiURL}/servicos-prestados`, servicoPrestado);
   }
 }
