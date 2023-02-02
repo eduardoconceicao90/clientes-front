@@ -26,11 +26,44 @@
       <br>
 
       <div class="row">
-        <div class="col-md-3">
-          <button type="submit" class="btn btn-primary">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-warning" routerLink="/servico-prestado-form">
+            <i class="fa fa-plus"></i> Novo
+          </button>
+
+          <button type="submit" class="btn btn-primary  ml-1">
             <i class="fa fa-search"></i> Consultar
+          </button>
+
+          <button type="button" class="btn btn-secondary ml-1" (click)="limparCampos()">
+            <i class="fas fa-eraser"></i> Limpar
           </button>
         </div>
       </div>
     </form>
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Descrição</th>
+              <th>Preço</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of lista">
+              <td>{{ nome }}</td>
+              <td>{{ s.descricao }}</td>
+              <td>{{ s.valor }}</td>
+              <td>{{ s.data }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 </div>

@@ -16,7 +16,7 @@ export class ServicoPrestadoService {
 
   find(nome: any, mes: any): Observable<ServicoPrestadoBusca[]> {
     const httpParams = new HttpParams().set("nome", nome)
-                                                    .set("mes", mes);
+                                                    .set("mes", mes ? mes : '');
 
     const url = this.apiURL + "/servicos-prestados" + "?" + httpParams;
     return this.http.get<any>(url);

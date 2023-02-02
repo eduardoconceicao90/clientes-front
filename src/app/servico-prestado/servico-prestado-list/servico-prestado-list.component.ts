@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ServicoPrestadoService } from 'src/app/servico-prestado.service';
 import { ServicoPrestadoBusca } from './servicoPrestadoBusca';
 
@@ -9,12 +10,15 @@ import { ServicoPrestadoBusca } from './servicoPrestadoBusca';
 })
 export class ServicoPrestadoListComponent implements OnInit {
 
-  nome?: string;
-  mes?: number;
+  nome: any;
+  mes: any;
   meses: number[] = [1,2,3,4,5,6,7,8,9,10,11,12];
   lista?: ServicoPrestadoBusca[];
 
-  constructor(private service: ServicoPrestadoService) { }
+  constructor(
+        private service: ServicoPrestadoService,
+        private toast: ToastrService
+        ) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +26,15 @@ export class ServicoPrestadoListComponent implements OnInit {
   find() {
     this.service.find(this.nome, this.mes).subscribe(resposta => {
       this.lista = resposta;
+      if(this.lista.length <= 0){
+        this.toast.error('Nenhum registro encontrado!')
+      }
     })
   }
 
+  limparCampos(){
+    this.nome = null;
+    this.mes = null;
+    this.lista = [];
+  }
 }
