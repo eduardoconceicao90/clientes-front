@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +11,24 @@ export class LoginComponent {
 
   username: any;
   password: any;
+  cadastrando: boolean = false;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private toast: ToastrService
+    ) { }
 
   onSubmit(){
-    console.log(`User: ${this.username}, Pass: ${this.password}`)
+    this.router.navigate(['home']);
+  }
+
+  preparaCadastrar(event: any){
+    event.preventDefault()
+    this.cadastrando = true;
+  }
+
+  cancelaCadastro(){
+    this.cadastrando = false;
   }
 
 }
