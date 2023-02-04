@@ -13,20 +13,26 @@ import { ClientesService } from './clientes.service';
 import { ToastrModule } from 'ngx-toastr';
 import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module';
 import { ServicoPrestadoService } from './servico-prestado.service';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask'
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     TemplateModule,
     ClientesModule,
     ServicoPrestadoModule,
+    NgxMaskModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,

@@ -6,6 +6,7 @@ import { ServicoPrestadoFormComponent } from './servico-prestado-form/servico-pr
 import { ServicoPrestadoListComponent } from './servico-prestado-list/servico-prestado-list.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgxMaskModule } from 'ngx-mask'
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     ServicoPrestadoRoutingModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    NgxMaskModule.forChild()
   ], exports: [
     ServicoPrestadoFormComponent,
     ServicoPrestadoListComponent

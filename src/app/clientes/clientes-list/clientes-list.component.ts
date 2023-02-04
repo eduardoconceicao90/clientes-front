@@ -43,7 +43,7 @@ export class ClientesListComponent implements OnInit {
       this.toast.success('Cliente deletado com sucesso!', 'Deleção');
       this.ngOnInit();
     }, errorResponse => {
-      this.toast.error(errorResponse.error.errors)
+      this.toast.error("Ocorreu um erro ao deletar o cliente!")
     });
   }
 }
