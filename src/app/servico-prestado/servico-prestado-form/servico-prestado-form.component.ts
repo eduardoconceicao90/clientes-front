@@ -37,7 +37,7 @@ export class ServicoPrestadoFormComponent implements OnInit {
   onSubmit() {
     this.service.create(this.servico).subscribe(resposta => {
       this.toast.success('Serviço cadastrado com sucesso!', 'Cadastro Serviço');
-      this.router.navigate(['servico-prestado-list'])
+      this.router.navigate(['servicos-prestados/list'])
     }, errorResponse => {
       this.toast.error(errorResponse.error.errors)
     });
