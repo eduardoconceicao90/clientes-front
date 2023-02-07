@@ -41,7 +41,7 @@ export class LoginComponent {
     this.authService.create(usuario).subscribe(resposta => {
       this.toast.success('Usuário cadastrado com sucesso!', 'Cadastro Usuário');
     }, errorResponse => {
-      this.toast.error("Ocorreu um erro ao cadastrar novo usuário!")
+      this.toast.error(errorResponse.error.message)
     });
   }
 
