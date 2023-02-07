@@ -41,7 +41,10 @@ export class LoginComponent {
     usuario.username = this.username;
     usuario.password = this.password;
     this.authService.create(usuario).subscribe(resposta => {
-      this.toast.success('Usuário cadastrado com sucesso!', 'Cadastro Usuário');
+      this.toast.success('Usuário cadastrado com sucesso! Efetue o login.', 'Cadastro Usuário');
+      this.cadastrando = false;
+      this.username = '';
+      this.password = '';
     }, errorResponse => {
       this.errors = errorResponse.error.errors || errorResponse.error.message;
       this.toast.error(JSON.stringify(this.errors));
