@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../auth.service';
+import { Usuario } from './usuario';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,8 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private authService: AuthService
     ) { }
 
   onSubmit(){
@@ -29,6 +32,17 @@ export class LoginComponent {
 
   cancelaCadastro(){
     this.cadastrando = false;
+  }
+
+  cadastrar(){
+    const usuario = new Usuario();
+    usuario.username = this.username;
+    usuario.password = this.password;
+    this.authService.create(usuario).subscribe(resposta => {
+      this.toast.success('Usuário cadastrado com sucesso!', 'Cadastro Usuário');
+    }, errorResponse => {
+      this.toast.error("Ocorreu um erro ao cadastrar novo usuário!")
+    });
   }
 
 }
