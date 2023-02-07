@@ -15,6 +15,8 @@ export class LoginComponent {
   password: any;
   cadastrando: boolean = false;
 
+  errors = [];
+
   constructor(
     private router: Router,
     private toast: ToastrService,
@@ -41,7 +43,8 @@ export class LoginComponent {
     this.authService.create(usuario).subscribe(resposta => {
       this.toast.success('Usuário cadastrado com sucesso!', 'Cadastro Usuário');
     }, errorResponse => {
-      this.toast.error(errorResponse.error.message)
+      this.errors = errorResponse.error.errors || errorResponse.error.message;
+      this.toast.error(JSON.stringify(this.errors));
     });
   }
 
