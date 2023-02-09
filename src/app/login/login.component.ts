@@ -25,6 +25,8 @@ export class LoginComponent {
 
   onSubmit(){
     this.authService.tentarLogar(this.username, this.password).subscribe(resposta => {
+      const access_token = JSON.stringify(resposta);
+      localStorage.setItem('access_token', access_token)
       this.router.navigate(['home']);
     }, errorResponse => {
       this.toast.error('Usuário e/ou senha incorreto(s)!')
@@ -50,8 +52,13 @@ export class LoginComponent {
       this.username = '';
       this.password = '';
     }, errorResponse => {
-      this.errors = errorResponse.error.errors || errorResponse.error.message;
-      this.toast.error(JSON.stringify(this.errors.join(', ')));
+      console.log(errorResponse)
+      if(errorResponse.error.errors != null){
+        this.errors = errorResponse.error.errors;
+        this.toast.error(JSON.stringify(this.errors.join(', ')));
+      } else if(errorResponse.error.message != null) {
+        this.toast.error(errorResponse.error.message);
+      }
     });
   }
 

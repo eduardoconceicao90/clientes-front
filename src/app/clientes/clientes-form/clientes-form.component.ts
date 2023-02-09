@@ -40,16 +40,24 @@ export class ClientesFormComponent implements OnInit {
         this.toast.success('Cliente atualizado com sucesso!', 'Atualização');
         this.router.navigate(['clientes/list'])
       }, errorResponse => {
-        this.errors = errorResponse.error.errors || errorResponse.error.message;
-        this.toast.error(JSON.stringify(this.errors.join(', ')));
+        if(errorResponse.error.errors != null){
+          this.errors = errorResponse.error.errors;
+          this.toast.error(JSON.stringify(this.errors.join(', ')));
+        } else if(errorResponse.error.message != null) {
+          this.toast.error(errorResponse.error.message);
+        }
       });
     } else{
       this.service.create(this.cliente).subscribe(() => {
         this.toast.success('Cliente cadastrado com sucesso!', 'Cadastro');
         this.router.navigate(['clientes/list'])
       }, errorResponse => {
-        this.errors = errorResponse.error.errors || errorResponse.error.message;
-        this.toast.error(JSON.stringify(this.errors.join(', ')));
+        if(errorResponse.error.errors != null){
+          this.errors = errorResponse.error.errors;
+          this.toast.error(JSON.stringify(this.errors.join(', ')));
+        } else if(errorResponse.error.message != null) {
+          this.toast.error(errorResponse.error.message);
+        }
       });
     }
   }
