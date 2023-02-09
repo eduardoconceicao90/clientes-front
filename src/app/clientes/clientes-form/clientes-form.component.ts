@@ -43,8 +43,8 @@ export class ClientesFormComponent implements OnInit {
         if(errorResponse.error.errors != null){
           this.errors = errorResponse.error.errors;
           this.toast.error(JSON.stringify(this.errors.join(', ')));
-        } else if(errorResponse.error.message != null) {
-          this.toast.error(errorResponse.error.message);
+        } else {
+          this.toast.error('CPF já cadastrado!');
         }
       });
     } else{
@@ -55,8 +55,8 @@ export class ClientesFormComponent implements OnInit {
         if(errorResponse.error.errors != null){
           this.errors = errorResponse.error.errors;
           this.toast.error(JSON.stringify(this.errors.join(', ')));
-        } else if(errorResponse.error.message != null) {
-          this.toast.error(errorResponse.error.message);
+        } else {
+          this.toast.error('CPF já cadastrado!');
         }
       });
     }

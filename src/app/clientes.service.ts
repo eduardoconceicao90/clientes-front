@@ -14,13 +14,7 @@ export class ClientesService {
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Cliente[]>{
-    const tokenString = (localStorage.getItem('access_token') || '{}')
-    const token = JSON.parse(tokenString)
-    const headers = {
-      'Authorization': 'Bearer ' + token.access_token
-    }
-
-    return this.http.get<Cliente[]>(`${this.apiURL}/clientes`, { headers });
+    return this.http.get<Cliente[]>(`${this.apiURL}/clientes`);
   }
 
   findById(id: any): Observable<Cliente>{
@@ -28,12 +22,7 @@ export class ClientesService {
   }
 
   create(cliente: Cliente): Observable<Cliente> {
-    const token = JSON.parse(localStorage.getItem('access_token') || '{}')
-    const headers = {
-      'Authorization': 'Bearer ' + token.access_token
-    }
-
-    return this.http.post<Cliente>(`${this.apiURL}/clientes`, cliente, { headers });
+    return this.http.post<Cliente>(`${this.apiURL}/clientes`, cliente);
   }
 
   update(cliente: Cliente): Observable<Cliente>{
