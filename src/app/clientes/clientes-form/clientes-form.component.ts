@@ -41,7 +41,7 @@ export class ClientesFormComponent implements OnInit {
         this.router.navigate(['clientes/list'])
       }, errorResponse => {
         this.errors = errorResponse.error.errors || errorResponse.error.message;
-        this.toast.error(JSON.stringify(this.errors));
+        this.toast.error(JSON.stringify(this.errors.join(', ')));
       });
     } else{
       this.service.create(this.cliente).subscribe(() => {
@@ -49,7 +49,7 @@ export class ClientesFormComponent implements OnInit {
         this.router.navigate(['clientes/list'])
       }, errorResponse => {
         this.errors = errorResponse.error.errors || errorResponse.error.message;
-        this.toast.error(JSON.stringify(this.errors));
+        this.toast.error(JSON.stringify(this.errors.join(', ')));
       });
     }
   }

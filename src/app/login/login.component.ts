@@ -24,7 +24,11 @@ export class LoginComponent {
     ) { }
 
   onSubmit(){
-    this.router.navigate(['home']);
+    this.authService.tentarLogar(this.username, this.password).subscribe(resposta => {
+      this.router.navigate(['home']);
+    }, errorResponse => {
+      this.toast.error('Usuário e/ou senha incorreto(s)!')
+    });
   }
 
   preparaCadastrar(event: any){
@@ -47,7 +51,7 @@ export class LoginComponent {
       this.password = '';
     }, errorResponse => {
       this.errors = errorResponse.error.errors || errorResponse.error.message;
-      this.toast.error(JSON.stringify(this.errors));
+      this.toast.error(JSON.stringify(this.errors.join(', ')));
     });
   }
 
