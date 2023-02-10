@@ -8,10 +8,6 @@
                     Home</a
                 >
 
-                <a class="nav-link cursor" (click)="logout()"
-                    ><div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
-                    Logout</a
-                >
                 <div class="sb-sidenav-menu-heading">Cadastros</div>
                 <a class="nav-link collapsed" routerLink="/clientes"
                     data-toggle="collapse" data-target="#collapseLayouts"
@@ -26,11 +22,17 @@
                     ><div class="sb-nav-link-icon"><i class="fas fa-business-time"></i></div>
                     Serviços Prestados
                 </a>
+
+                <div class="sb-sidenav-menu-heading">Logout</div>
+                <a class="nav-link cursor" (click)="logout()"
+                    ><div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                    Sair</a
+                >
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            Start Bootstrap
+            <div class="small">Usuário logado:</div>
+            {{ usuarioLogado }}
         </div>
     </nav>
 </div>

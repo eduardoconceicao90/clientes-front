@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class SidebarComponent implements OnInit {
 
+  usuarioLogado: any;
+
   constructor(
         private authService: AuthService,
         private router: Router,
@@ -17,12 +19,13 @@ export class SidebarComponent implements OnInit {
         ) { }
 
   ngOnInit(): void {
+    this.usuarioLogado = this.authService.getUsuarioAutenticado();
   }
 
   logout(){
     this.router.navigate(['login']);
     this.authService.logout();
-    this.toast.info('Logout realizado com sucesso!', 'Logout', {timeOut: 4000});
+    this.toast.info('Logout realizado com sucesso!', '', {timeOut: 4000});
   }
 
 }
