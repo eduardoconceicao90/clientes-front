@@ -18,10 +18,10 @@ export class LoginComponent {
   errors = [];
 
   constructor(
-    private router: Router,
-    private toast: ToastrService,
-    private authService: AuthService
-    ) { }
+        private router: Router,
+        private toast: ToastrService,
+        private authService: AuthService
+        ) { }
 
   onSubmit(){
     this.authService.tentarLogar(this.username, this.password).subscribe(resposta => {
