@@ -52,8 +52,7 @@ export class LoginComponent {
       this.username = '';
       this.password = '';
     }, errorResponse => {
-      console.log(errorResponse)
-      if(errorResponse.error.errors != null){
+      if(errorResponse.status != 500){
         this.errors = errorResponse.error.errors;
         this.toast.error(JSON.stringify(this.errors.join(', ')));
       } else {

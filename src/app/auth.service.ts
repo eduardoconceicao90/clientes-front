@@ -20,7 +20,7 @@ export class AuthService {
     return this.http.post<Usuario>(`${this.apiURL}/usuarios`, usuario);
   }
 
-  tentarLogar(usarname: string, password: string): Observable<Usuario> {
+  tentarLogar(usarname: string, password: string): Observable<any> {
     const params = new HttpParams()
                                 .set('username', usarname)
                                 .set('password', password)
