@@ -40,11 +40,11 @@ export class ClientesFormComponent implements OnInit {
         this.toast.success('Cliente atualizado com sucesso!', 'Atualização');
         this.router.navigate(['clientes/list'])
       }, errorResponse => {
-        if(errorResponse.status != 500){
+        if(errorResponse.error.error == "Data Integraty Violation Exception"){
+          this.toast.error(errorResponse.error.message);
+        } else {
           this.errors = errorResponse.error.errors;
           this.toast.error(JSON.stringify(this.errors.join(', ')));
-        } else {
-          this.toast.error('CPF já cadastrado!');
         }
       });
     } else{
@@ -52,11 +52,11 @@ export class ClientesFormComponent implements OnInit {
         this.toast.success('Cliente cadastrado com sucesso!', 'Cadastro');
         this.router.navigate(['clientes/list'])
       }, errorResponse => {
-        if(errorResponse.status != 500){
+        if(errorResponse.error.error == "Data Integraty Violation Exception"){
+          this.toast.error(errorResponse.error.message);
+        } else {
           this.errors = errorResponse.error.errors;
           this.toast.error(JSON.stringify(this.errors.join(', ')));
-        } else {
-          this.toast.error('CPF já cadastrado!');
         }
       });
     }
