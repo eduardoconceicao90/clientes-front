@@ -52,12 +52,8 @@ export class LoginComponent {
       this.username = '';
       this.password = '';
     }, errorResponse => {
-      if(errorResponse.status != 500){
         this.errors = errorResponse.error.errors;
         this.toast.error(JSON.stringify(this.errors.join(', ')));
-      } else {
-        this.toast.error('Usuário já cadastrado!');
-      }
     });
   }
 
