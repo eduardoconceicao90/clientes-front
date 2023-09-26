@@ -42,7 +42,7 @@ export class ClientesListComponent implements OnInit {
     this.service.delete(this.clienteSelecionado.id).subscribe(() => {
       this.toast.success('Cliente deletado com sucesso!', 'Deleção');
       this.ngOnInit();
-    }, errorResponse => {
+    }, () => {
       this.toast.error("Ocorreu um erro ao deletar o cliente!")
     });
   }

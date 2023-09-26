@@ -15,8 +15,6 @@ export class LoginComponent {
   password: any;
   cadastrando: boolean = false;
 
-  errors = [];
-
   constructor(
         private router: Router,
         private toast: ToastrService,
@@ -28,7 +26,7 @@ export class LoginComponent {
       const access_token = JSON.stringify(resposta);
       localStorage.setItem('access_token', access_token)
       this.router.navigate(['home']);
-    }, errorResponse => {
+    }, () => {
       this.toast.error('Usuário e/ou senha incorreto(s)!')
     });
   }
@@ -46,14 +44,13 @@ export class LoginComponent {
     const usuario = new Usuario();
     usuario.username = this.username;
     usuario.password = this.password;
-    this.authService.create(usuario).subscribe(resposta => {
+    this.authService.create(usuario).subscribe(() => {
       this.toast.success('Usuário cadastrado com sucesso! Efetue o login.', 'Cadastro Usuário');
       this.cadastrando = false;
       this.username = '';
       this.password = '';
     }, errorResponse => {
-        this.errors = errorResponse.error.errors;
-        this.toast.error(JSON.stringify(this.errors.join(', ')));
+      this.toast.error(errorResponse.error.errors);
     });
   }
 
