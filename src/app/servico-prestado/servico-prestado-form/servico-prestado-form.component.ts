@@ -39,7 +39,9 @@ export class ServicoPrestadoFormComponent implements OnInit {
       this.toast.success('Serviço cadastrado com sucesso!', 'Cadastro Serviço');
       this.router.navigate(['servicos-prestados/list'])
     }, errorResponse => {
-      this.toast.error(errorResponse.error.errors)
+        errorResponse.error.errors.forEach((erro: any) => {
+          this.toast.error(erro);
+      });
     });
   }
 

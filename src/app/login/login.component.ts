@@ -50,7 +50,9 @@ export class LoginComponent {
       this.username = '';
       this.password = '';
     }, errorResponse => {
-      this.toast.error(errorResponse.error.errors);
+        errorResponse.error.errors.forEach((erro: any) => {
+          this.toast.error(erro);
+      });
     });
   }
 
